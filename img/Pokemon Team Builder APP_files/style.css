@@ -1,0 +1,289 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto&display=swap");
+
+/* Resets & primary declarations */
+:root {
+  --modal-duration: 1s;
+  --primary-color: #262626;
+  --secondary-color: #ee6b2f;
+  --mainBlue: #3b5da8;
+  --mainYellow: #ffcb05;
+  /* types of Pokémons */
+  --normal: #a8a878;
+  --fire: #f08030;
+  --fighting: #c03028;
+  --water: #6890f0;
+  --flying: #a890f0;
+  --grass: #78c850;
+  --poison: #a040a0;
+  --eletric: #f8d030;
+  --ground: #e0c068;
+  --psychic: #f85888;
+  --rock: #b8a038;
+  --ice: #98d8d8;
+  --bug: #a8b820;
+  --dragon: #7038f8;
+  --ghost: #705898;
+  --dark: #705848;
+  --steel: #b8b8d0;
+  --fairy: #ee99ac;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  background: #eef1f5;
+  transition: transform 0.3s ease;
+}
+
+a,
+li {
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+
+/* Navigation section            !important REMEMBER TO ADD SOME CLASSES */
+body.show-nav {
+  /* Width of nav */
+  transform: translateX(200px);
+}
+
+nav {
+  background-color: var(--primary-color);
+  border-right: 2px solid rgba(200, 200, 200, 0.1);
+  color: #fff;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 200px;
+  height: 100vh;
+  z-index: 100;
+  transform: translateX(-100%);
+}
+
+nav .logo {
+  padding: 30px 0;
+  text-align: center;
+}
+
+nav .logo img {
+  height: 75px;
+  width: 75px;
+  border-radius: 50%;
+}
+
+nav ul {
+  padding: 0;
+  list-style-type: none;
+  margin: 0;
+}
+
+nav ul li {
+  border-bottom: 2px solid rgba(200, 200, 200, 0.1);
+  padding: 20px;
+}
+
+nav ul li:first-of-type {
+  border-top: 2px solid rgba(200, 200, 200, 0.1);
+}
+
+nav ul li a {
+  color: #fff;
+  text-decoration: none;
+}
+
+nav ul li a:hover {
+  text-decoration: underline;
+}
+
+.toggle {
+  background-color: var(--primary-color);
+  position: absolute;
+}
+
+.cta-btn {
+  border-radius: 20px;
+  padding: 12px 30px;
+  font-size: 20px;
+}
+
+/* Search Header */
+
+.headerContainer {
+  display: flex;
+  align-items: center;
+  background-color: var(--primary-color);
+  color: #fff;
+  padding: 40px;
+}
+
+.searchContainer {
+  margin: auto;
+  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.flexSearch {
+  display: flex;
+  max-width: 800px;
+}
+
+.searchContainer input[type="text"] {
+  padding: 5px;
+  width: 600px;
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+  border: 4px solid var(--secondary-color);
+}
+
+.search-btn {
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+}
+
+/* Pokemon Showcase*/
+
+.pokeShowcase {
+  padding: 15px;
+  margin: 0 auto;
+  max-width: 100vh;
+  width: 800px;
+  background-color: lightblue;
+}
+
+.poke.cards {
+  margin: 50px 0 10px 20px;
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  grid-gap: 10px;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.poke.card {
+  max-width: 210px;
+}
+
+.pokeName {
+  color: rgba(255, 255, 0, 0.815);
+  margin: 0;
+}
+
+.poke.card img {
+  background-color: #424242;
+  max-width: 210px;
+}
+
+.pokeInfo {
+  background-color: #2323;
+}
+
+.image {
+  width: 210px;
+  height: 210px;
+}
+
+/* Modal Styling */
+
+.modal-container {
+  background-color: rgba(0, 0, 0, 0.6);
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.modal-container.show-modal {
+  display: block;
+}
+
+.modal {
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  position: absolute;
+  overflow: hidden;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 100%;
+  width: 400px;
+  animation-name: modalopen;
+  animation-duration: var(--modal-duration);
+}
+
+.modal-header {
+  background: var(--primary-color);
+  color: #fff;
+  padding: 15px;
+}
+
+.modal-header h3 {
+  margin: 0;
+  border-bottom: 1px solid #333;
+}
+
+.modal-content {
+  padding: 20px;
+}
+
+.modal-form div {
+  margin: 15px 0;
+}
+
+.modal-form label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.modal-form .form-input {
+  padding: 8px;
+  width: 100%;
+}
+
+.close-btn {
+  background: transparent;
+  font-size: 25px;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+@keyframes modalopen {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+/* Some utility classes */
+
+button,
+input[type="submit"] {
+  background-color: var(--secondary-color);
+  border: 0;
+  color: #fff;
+  cursor: pointer;
+  padding: 8px 12px;
+}
+
+input,
+button:focus {
+  outline: none;
+}

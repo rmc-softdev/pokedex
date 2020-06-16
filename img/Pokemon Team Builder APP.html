@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<!-- saved from url=(0056)http://127.0.0.1:5500/MyPokeApi%20with%20CSS/index.html? -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    
+    
+    <title>Pokemon Team Builder APP</title>
+  <link rel="stylesheet" href="./Pokemon Team Builder APP_files/all.min.css" integrity="sha256-+N4/V/SbAFiW1MPBCXnfnP9QSN3+Keu+NlB+0ev/YKQ=" crossorigin="anonymous"><link rel="stylesheet" href="./Pokemon Team Builder APP_files/style.css"></head>
+  <body class="show-nav">
+    <!-- Navigation section-->
+
+    <nav>
+      <div class="logo">
+        <img src="./Pokemon Team Builder APP_files/76.jpg" alt="user">
+      </div>
+      <ul>
+        <li><a href="http://127.0.0.1:5500/MyPokeApi%20with%20CSS/index.html?#">Home</a></li>
+        <li><a href="http://127.0.0.1:5500/MyPokeApi%20with%20CSS/index.html?#">Portfolio</a></li>
+        <li><a href="http://127.0.0.1:5500/MyPokeApi%20with%20CSS/index.html?#">Blog</a></li>
+        <li><a href="http://127.0.0.1:5500/MyPokeApi%20with%20CSS/index.html?#">Contact Me</a></li>
+      </ul>
+    </nav>
+    <!-- Search Header section -->
+    <header class="headerContainer">
+      <button id="toggle" class="toggle">
+        <img src="./Pokemon Team Builder APP_files/pokedex.png">
+        <h2>Build your team</h2>
+      </button>
+      <div class="searchContainer">
+        <h1>Some beatiful animation</h1>
+        <div class="flexSearch">
+          <form class="flexSearch" id="submit">
+            <input type="text" id="search" placeholder="Find yourself an awesome Pokémon">
+            <button class="search-btn" type="submit">
+              <i class="fas fa-search fa-2x"></i>
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <button class="cta-btn" id="open">Sign Up</button>
+    </header>
+    <!-- Pokémon Showcase section-->
+    <div id="pokeShowcase">
+      <div id="cards-container" class="poke cards"><div class="poke card"><div class="image"><img srcset="https://pokeres.bastionbot.org/images/pokemon/25.png"></div><div class="pokeInfo"><h1 class="pokeName">pikachu</h1><p class="pokeNumber">#25</p><ul class="pokeTypes"><li>electric</li></ul><ul class="pokeAbilities"><li>lightning-rod</li><li>static</li></ul></div></div></div>
+    </div>
+
+    <!-- Modal section -->
+    <div class="modal-container" id="modal">
+      <div class="modal">
+        <button class="close-btn" id="close">
+          <i class="fa fa-times"></i>
+        </button>
+        <div class="modal-header">
+          <h3>Sign Up</h3>
+        </div>
+        <div class="modal-content">
+          <p>Register with us to get offers, support and much more</p>
+          <form class="modal-form">
+            <div>
+              <label for="name">Name</label>
+              <input type="text" id="name" placeholder="Enter Name" class="form-input">
+            </div>
+            <div>
+              <label for="email">Email</label>
+              <input type="email" id="email" placeholder="Enter Email" class="form-input">
+            </div>
+            <div>
+              <label for="password">Password</label>
+              <input type="password" id="password" placeholder="Enter Password" class="form-input">
+            </div>
+            <div>
+              <label for="password2">Confirm Password</label>
+              <input type="password" id="password2" placeholder="Confirm Password" class="form-input">
+            </div>
+            <input type="submit" value="Submit" class="submit-btn">
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <script src="./Pokemon Team Builder APP_files/script.js.download"></script>
+  <!-- Code injected by live-server -->
+<script type="text/javascript">
+	// <![CDATA[  <-- For SVG support
+	if ('WebSocket' in window) {
+		(function () {
+			function refreshCSS() {
+				var sheets = [].slice.call(document.getElementsByTagName("link"));
+				var head = document.getElementsByTagName("head")[0];
+				for (var i = 0; i < sheets.length; ++i) {
+					var elem = sheets[i];
+					var parent = elem.parentElement || head;
+					parent.removeChild(elem);
+					var rel = elem.rel;
+					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+					}
+					parent.appendChild(elem);
+				}
+			}
+			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+			var address = protocol + window.location.host + window.location.pathname + '/ws';
+			var socket = new WebSocket(address);
+			socket.onmessage = function (msg) {
+				if (msg.data == 'reload') window.location.reload();
+				else if (msg.data == 'refreshcss') refreshCSS();
+			};
+			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+				console.log('Live reload enabled.');
+				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+			}
+		})();
+	}
+	else {
+		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+	}
+	// ]]>
+</script>
+
+</body></html>

@@ -1,0 +1,141 @@
+const toggle = document.getElementById("toggle");
+const close = document.getElementById("close");
+const open = document.getElementById("open");
+const modal = document.getElementById("modal");
+
+const search = document.getElementById("search"),
+  submit = document.getElementById("submit"),
+  showcase = document.querySelector(".pokeShowcase"),
+  cards = document.querySelector(".pokeCards"),
+  pokecard = document.querySelector(".card"),
+  chosenPokemon = document.querySelector(".chosenPokemon"),
+  imgContainer = document.querySelector(".imgContainer"),
+  infoContainer = document.querySelector(".infoContainer");
+
+let allNames = [];
+let usefulData = [];
+//Main section
+
+// Fetching data from the main API
+function fetchPokemons() {
+  fetch("https://pokeapi.co/api/v2/pokemon?limit=807") //fetchs up to 807 pokes, but I think the API has blocked the amount of requests per min to a certain amount
+    .then(dataBlob => dataBlob.json())
+    .then(allpokemons => {
+      allpokemons.results.forEach(pokemon => fetchPokemonData(pokemon));
+      allpokemons.results.forEach(pokemon => allNames.push(pokemon.name)); // it "renders" an array with all the pokémon's name we'll be using, it's here because dealing with the pokeData to do so became troublesome
+    });
+}
+
+// getting each Poke's data themselves
+function fetchPokemonData(pokemon) {
+  let url = pokemon.url;
+  fetch(url)
+    .then(dataBlob => dataBlob.json())
+    .then(pokeData => {
+      usefulData.push(pokeData);
+    });
+}
+
+// these are auxiliary functions that process & render the data
+
+function renderAbilities(abilities, ul) {
+  abilities.forEach(el => {
+    let abilitiesLi = document.createElement("li");
+    abilitiesLi.innerText = el.ability.name;
+    ul.append(abilitiesLi);
+  });
+}
+
+function renderTypes(types, ul) {
+  types.forEach(type => {
+    let typeLi = document.createElement("li");
+    typeLi.innerText = type["type"]["name"]; // retrieves from a double nested object the type and inserts each to a li;
+    ul.append(typeLi);
+  });
+}
+
+function renderImage(pokeID, containerDiv) {
+  let pokeImgContainer = document.createElement("div");
+  pokeImgContainer.classList.add("image");
+
+  let pokeImage = document.createElement("img");
+  pokeImage.srcset = `https://pokeres.bastionbot.org/images/pokemon/${pokeID}.png`; // the main API has lacking images, so we'll be using this one instead
+  pokeImgContainer.append(pokeImage);
+  containerDiv.append(pokeImgContainer);
+}
+
+fetchPokemons();
+
+// search mechanism
+function findMatches(wordToMatch, namesArray) {
+  const regex = new RegExp(wordToMatch, "gi");
+  return namesArray.filter(names => {
+    return names.match(regex);
+  });
+}
+
+let pokeMatchArray = [];
+function displayMatches(e) {
+  let cards_container = document.getElementById("cards-container");
+  cards_container.innerHTML = ""; // cleans the result for a new search
+  e.preventDefault();
+  let matchPokeArray = findMatches(search.value, allNames);
+  matchPokeArray.forEach(el => pokeMatchArray.push(el));
+  processingPokeData();
+}
+
+function processingPokeData() {
+  usefulData.forEach(el => {
+    if (pokeMatchArray.includes(el.name)) {
+      let cardsContainer = document.getElementById("cards-container"); // note the plural, this regards all of them
+      let cardContainer = document.createElement("div");
+      let cardinfoContainer = document.createElement("div");
+      // attributes to be displayed at cardInfo
+      let pokeName = document.createElement("h1");
+      pokeName.innerText = el.name;
+      let pokeNumber = document.createElement("p");
+      pokeNumber.innerText = `#${el.id}`;
+      let pokeTypes = document.createElement("ul");
+      let pokeAbilities = document.createElement("ul");
+
+      cardContainer.classList.add("poke", "card");
+      cardinfoContainer.classList.add("pokeInfo");
+      pokeTypes.classList.add("pokeTypes");
+      pokeAbilities.classList.add("pokeAbilities");
+      pokeName.classList.add("pokeName");
+      pokeNumber.classList.add("pokeNumber");
+
+      renderAbilities(el.abilities, pokeAbilities);
+      renderImage(el.id, cardContainer);
+      renderTypes(el.types, pokeTypes); // it should append to the ul above as li
+
+      cardinfoContainer.append(pokeName, pokeNumber, pokeTypes, pokeAbilities); // !IMPORTANT: it renders the whole card with useful infos!
+      cardContainer.append(cardinfoContainer);
+      cardsContainer.appendChild(cardContainer); // append each card to the "main" card container, notice the plural again
+    }
+  });
+  pokeMatchArray = [];
+}
+
+//add Event Listeners
+submit.addEventListener("submit", displayMatches);
+//submit.addEventListener("change", displayMatches);
+//submit.addEventListener("keyup", displayMatches);
+
+//Modal section
+
+// Toggle nav
+toggle.addEventListener("click", () =>
+  document.body.classList.toggle("show-nav")
+);
+
+// Show modal
+open.addEventListener("click", () => modal.classList.add("show-modal"));
+
+// Hide modal
+close.addEventListener("click", () => modal.classList.remove("show-modal"));
+
+// Hide modal on outside click
+window.addEventListener("click", e =>
+  e.target == modal ? modal.classList.remove("show-modal") : false
+);

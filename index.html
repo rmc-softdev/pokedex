@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css"
+      integrity="sha256-+N4/V/SbAFiW1MPBCXnfnP9QSN3+Keu+NlB+0ev/YKQ="
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <title>Pokemon Team Builder APP</title>
+  </head>
+  <body>
+    <!-- Navigation section !important REMEMBER TO add some classes-->
+    <nav class="nav">
+      <div class="logo">
+        <img src="img/pokelogo2.png" alt="user" />
+      </div>
+      <h3 class="pokeNavSlogan">Get them, trainer!</h3>
+      <form id="submitTeam">
+        <div class="form control">
+          <div class="input control">
+            <input
+              type="text"
+              id="searchTeam"
+              placeholder="Add your favorite Poke"
+              autocomplete="off"
+            />
+            <div class="border-effect"></div>
+          </div>
+          <button class="btn add">
+            <img
+              src="https://image.flaticon.com/icons/svg/188/188918.svg"
+              alt="add Pokemon icon as a pokeball"
+              class="addIcon"
+            />
+          </button>
+        </div>
+      </form>
+      <h3 class="pokeNavSlogan" id="mainSlogan">
+        Pokémons you catched
+      </h3>
+      <ul id="selectedPokeContainer">
+        <!-- this will hold all selected Pokes each in a div-->
+      </ul>
+    </nav>
+    <!-- Search Header section -->
+    <header class="headerContainer">
+      <div class="topNav container">
+        <div class="appBrand">
+          <img src="https://img.icons8.com/color/96/000000/pokedex.png" />
+          <span>RMC</span>
+        </div>
+        <div class="rightMenu">
+          <button class="cta-btn" class="toggle" id="open">Sign Up</button>
+          <button id="toggle" class="toggle">
+            <span class="teamMaker"> Build your team </span>
+          </button>
+        </div>
+      </div>
+    </header>
+    <!-- Main Search -->
+    <div class="searchContainer container">
+      <h1 class="searchSlogan">Explore our PokeDex</h1>
+      <br />
+      <form class="flexSearch" id="submit">
+        <input
+          type="search"
+          id="search"
+          placeholder="Find yourself an awesome Pokémon"
+          autocomplete="off"
+        />
+      </form>
+    </div>
+    <!-- Pokémon Showcase Section-->
+    <div id="pokeShowcase">
+      <div id="cards-container" class="poke cards container">
+        <!-- will hold the cards for all the pokemon -->
+      </div>
+    </div>
+
+    <!-- Modal section -->
+    <div class="modal-container" id="modal">
+      <div class="modal">
+        <button class="close-btn" id="close">
+          <i class="fa fa-times"></i>
+        </button>
+        <div class="modal-header">
+          <h3>Sign Up</h3>
+        </div>
+        <div class="modal-content">
+          <p>Register with us to learn more about Pokémons</p>
+          <form class="modal-form">
+            <div>
+              <label for="name">Name</label>
+              <input
+                type="text"
+                id="name"
+                placeholder="Enter Name"
+                class="form-input"
+              />
+            </div>
+            <div>
+              <label for="email">Email</label>
+              <input
+                type="email"
+                id="email"
+                placeholder="Enter Email"
+                class="form-input"
+              />
+            </div>
+            <div>
+              <label for="password">Password</label>
+              <input
+                type="password"
+                id="password"
+                placeholder="Enter Password"
+                class="form-input"
+              />
+            </div>
+            <div>
+              <label for="password2">Confirm Password</label>
+              <input
+                type="password"
+                id="password2"
+                placeholder="Confirm Password"
+                class="form-input"
+              />
+            </div>
+            <input type="submit" value="Submit" class="submit-btn" />
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
